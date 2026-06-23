@@ -1,0 +1,24 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model AnalysisResult {
+  id                    String   @id @default(uuid())
+  instagram             String
+  age                   Int
+  height                Int
+  imageUrl              String
+  singleScore           Int
+  greenFlags            String   // JSON string of array
+  redFlags              String   // JSON string of array
+  assumptions           String   // JSON string of array
+  whoWouldLikeYou       String
+  marriageScore         Int
+  situationshipRisk     Int
+  relationshipPotential String
+  createdAt             DateTime @default(now())
+}

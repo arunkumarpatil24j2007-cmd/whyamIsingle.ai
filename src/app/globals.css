@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+:root {
+  --background: #09090B;
+  --foreground: #FFFFFF;
+  --primary-start: #7C3AED;
+  --primary-end: #DB2777;
+  --accent: #F59E0B;
+  --secondary-text: rgba(255, 255, 255, 0.6);
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --card-border: rgba(255, 255, 255, 0.08);
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-secondary-text: var(--secondary-text);
+  
+  --font-sans: var(--font-outfit), system-ui, -apple-system, sans-serif;
+}
+
+/* Lenis smooth scrolling rules */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis-stopped {
+  overflow: hidden;
+}
+.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Custom premium thin scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #09090B;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+  font-feature-settings: "ss01" on, "ss02" on, "cv01" on;
+}
+
+/* Premium Reeded Glass effect */
+.reeded-glass {
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 32px;
+}
+
+/* Procedural vertical ribbing lines for Reeded Glass */
+.reeded-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0px,
+    rgba(255, 255, 255, 0) 3px,
+    rgba(255, 255, 255, 0.015) 4px,
+    rgba(255, 255, 255, 0.015) 5px
+  );
+  opacity: 0.9;
+  z-index: 1;
+}
+
+/* Extremely subtle noise texture overlay */
+.noise-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.015; /* 1.5% opacity for absolute subtlety */
+  pointer-events: none;
+  z-index: 2;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Accent Glow Utility (used extremely sparingly) */
+.subtle-glow {
+  position: relative;
+}
+.subtle-glow::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, var(--primary-start), var(--primary-end));
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0.2;
+  filter: blur(12px);
+  pointer-events: none;
+}
+
+/* Horizontal scrolling text behind elements */
+.scrolling-bg-text {
+  font-family: var(--font-sans);
+  font-size: 15vw;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  color: rgba(255, 255, 255, 0.02);
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.03);
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
